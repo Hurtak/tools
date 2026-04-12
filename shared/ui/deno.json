@@ -1,0 +1,17 @@
+{
+  "name": "@shared/ui",
+  "exports": "./src/index.ts",
+  "imports": {
+    "@types/react": "npm:@types/react@19",
+    "react": "npm:react@19"
+  },
+  "lint": {
+    "rules": {
+      "tags": ["recommended", "jsx", "react"]
+    }
+  },
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
+}

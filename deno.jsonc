@@ -1,0 +1,37 @@
+{
+  // workspace settings
+  "workspace": [
+    "./apps/*",
+    "./shared/*"
+  ],
+  "tasks": {
+    "fix": "deno fmt && deno lint --fix",
+    "verify": "deno check && deno lint && deno fmt --check && deno task --recursive build"
+  },
+  "imports": {
+    "@deno/vite-plugin": "npm:@deno/vite-plugin@2",
+    "@vitejs/plugin-react": "npm:@vitejs/plugin-react@6",
+    "react": "npm:react@19",
+    "react-dom": "npm:react-dom@19",
+    "vite": "npm:vite@8"
+  },
+
+  // deno configuration
+  "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "deno.ns"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  },
+  "nodeModulesDir": "auto",
+  "vendor": true,
+
+  // checks configuration
+  "fmt": {
+    "lineWidth": 120
+  },
+  "lint": {
+    "rules": {
+      "tags": ["recommended", "workspace", "react", "jsx"]
+    }
+  }
+}
