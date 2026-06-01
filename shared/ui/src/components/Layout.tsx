@@ -1,5 +1,5 @@
-import { App as AntApp, ConfigProvider, Layout as AntLayout, Space, theme, Typography } from "antd";
-import type { CSSProperties, ReactNode } from "react";
+import { App, ConfigProvider, Layout as AntLayout, Space, theme, Typography } from "antd";
+import { CSSProperties, ReactNode } from "react";
 
 const { Content, Header } = AntLayout;
 const { Text, Title } = Typography;
@@ -24,24 +24,10 @@ export const Layout = ({
   <ConfigProvider
     theme={{
       algorithm: theme.defaultAlgorithm,
-      token: {
-        borderRadius: 8,
-        colorBgLayout: "#f4f6f8",
-        colorPrimary: "#2563eb",
-        fontFamily: 'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-      },
-      components: {
-        Button: {
-          borderRadius: 6,
-        },
-        Card: {
-          borderRadiusLG: 8,
-        },
-      },
     }}
   >
-    <AntApp>
-      <AntLayout style={{ background: "#f4f6f8", minHeight: "100vh" }}>
+    <App>
+      <AntLayout style={{ minHeight: "100vh" }}>
         <Header
           style={{
             background: "#fff",
@@ -85,6 +71,6 @@ export const Layout = ({
           <div style={{ margin: "0 auto", maxWidth, width: "100%" }}>{children}</div>
         </Content>
       </AntLayout>
-    </AntApp>
+    </App>
   </ConfigProvider>
 );
