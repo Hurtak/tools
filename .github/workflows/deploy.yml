@@ -25,14 +25,14 @@ jobs:
           deno-version: v2.x
           cache: true
       - run: deno task build
-      - uses: actions/upload-pages-artifact@v4
+      - uses: actions/upload-pages-artifact@v5
         with:
           name: artifact-dist
           path: dist
 
   deploy:
     if: github.ref == 'refs/heads/main'
-    needs: [verify, build]
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: write
