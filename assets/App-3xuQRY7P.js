@@ -1,0 +1,1 @@
+import{i as e,n as t,r as n,t as r}from"./ui-BE-6G9tN.js";var i=n(),{Title:a}=e,o=()=>(0,i.jsx)(t,{title:`app1`,children:(0,i.jsx)(r,{children:(0,i.jsx)(a,{level:3,style:{letterSpacing:0,margin:0},children:`hello`})})});export{o as App};
