@@ -17,8 +17,7 @@ import {
   Tag,
   Typography,
   Upload,
-  type UploadProps,
-} from "@shared/ui";
+} from "../../ui/index.ts";
 import { useMemo, useState } from "react";
 import { createFileId, formatBytes, joinCsvTexts } from "./domain.ts";
 
@@ -51,9 +50,9 @@ export const App = () => {
     [csvFiles],
   );
 
-  const uploadProps: UploadProps = {
+  const uploadProps = {
     accept: ".csv,text/csv",
-    beforeUpload: (file) => {
+    beforeUpload: (file: File) => {
       setCsvFiles((currentFiles) => [...currentFiles, { file, id: createFileId(file) }]);
       setJoinResult(null);
       setErrorMessage(null);
@@ -197,12 +196,7 @@ export const App = () => {
                   showIcon
                   type="success"
                 />
-                <TextArea
-                  readOnly
-                  rows={14}
-                  style={csvPreviewStyle}
-                  value={joinResult.content}
-                />
+                <TextArea readOnly rows={14} style={csvPreviewStyle} value={joinResult.content} />
               </Space>
             </PageCard>
           )
