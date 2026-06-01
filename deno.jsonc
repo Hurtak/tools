@@ -2,7 +2,7 @@
   // workspace settings
   "tasks": {
     "fix": "deno fmt && deno lint --fix",
-    "verify": "deno check && deno lint && deno fmt --check && deno task --recursive build"
+    "verify": "deno check && deno test && deno lint && deno fmt --check && deno task --recursive build"
   },
   "workspace": [
     "./apps/*",
