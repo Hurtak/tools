@@ -7,6 +7,7 @@
 
 ## TODOs
 
+- reload on nested routes causes 404 - we need to build each page or switch to nextjs for example
 - remove inline styles, use just Antd and Antd context configuration
 - wrap antd components
 - cleanup csv-join
