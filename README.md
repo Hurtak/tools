@@ -8,3 +8,4 @@
 
 - cleanup code
 - drop monorepo and just do SPA that has dynamic imports per route?
+- deploy
