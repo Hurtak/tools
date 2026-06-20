@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import {
   ArrowRightOutlined,
   Button,
@@ -15,19 +14,19 @@ const { Text } = Typography;
 const tools = [
   {
     description: "Join CSV files in order while keeping the first header row.",
+    href: "csv-join/",
     icon: <FileTextOutlined style={{ color: "#2563eb", fontSize: 22 }} />,
-    path: "/csv-join",
     title: "CSV Join",
   },
   {
     description: "Small placeholder app for the next tool.",
+    href: "app1/",
     icon: <ToolOutlined style={{ color: "#2563eb", fontSize: 22 }} />,
-    path: "/app1",
     title: "app1",
   },
 ];
 
-export const PageHome = () => (
+const PageHome = () => (
   <Layout subtitle="A small collection of browser tools." title="Tools">
     <div
       style={{
@@ -39,7 +38,7 @@ export const PageHome = () => (
       {tools.map((tool) => (
         <PageCard
           bodyStyle={{ display: "flex", flexDirection: "column", minHeight: 156 }}
-          key={tool.path}
+          key={tool.href}
           title={
             <Space size={10}>
               {tool.icon}
@@ -49,14 +48,14 @@ export const PageHome = () => (
         >
           <Text type="secondary">{tool.description}</Text>
           <div style={{ marginTop: "auto", paddingTop: 24 }}>
-            <Link to={tool.path}>
-              <Button icon={<ArrowRightOutlined />} type="primary">
-                Open
-              </Button>
-            </Link>
+            <Button href={tool.href} icon={<ArrowRightOutlined />} type="primary">
+              Open
+            </Button>
           </div>
         </PageCard>
       ))}
     </div>
   </Layout>
 );
+
+export default PageHome;

@@ -1,9 +1,8 @@
-import { Link } from "react-router";
 import { Button, HomeOutlined, Layout, PageCard, Space, Typography } from "../ui/index.ts";
 
 const { Paragraph, Text, Title } = Typography;
 
-export const PageNotFound = () => (
+const PageNotFound = () => (
   <Layout subtitle="The page you requested does not exist." title="Page not found">
     <PageCard
       bodyStyle={{
@@ -26,11 +25,11 @@ export const PageNotFound = () => (
       <Paragraph style={{ margin: 0, maxWidth: 480 }}>
         Check the address, or return to the tools list to choose an available app.
       </Paragraph>
-      <Link to="/">
-        <Button icon={<HomeOutlined />} type="primary">
-          Back to tools
-        </Button>
-      </Link>
+      <Button href="/tools/" icon={<HomeOutlined />} type="primary">
+        Back to tools
+      </Button>
     </PageCard>
   </Layout>
 );
+
+export default PageNotFound;

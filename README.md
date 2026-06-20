@@ -1,5 +1,11 @@
 # Hurtak's Tools
 
+## Development
+
+- `deno task dev` - start the dev server.
+- `deno task build` - build the static GitHub Pages export into `out`.
+- `deno task verify` - run type-checking, tests, linting, formatting checks, and a production build.
+
 ## Apps
 
 - `/tools/csv-join` - drag in CSV files, join them in order, keep the first header row, and download the merged CSV.
@@ -7,7 +13,6 @@
 
 ## TODOs
 
-- reload on nested routes causes 404 - we need to build each page or switch to nextjs for example
 - layout overflows and there is scrollbar
 - remove inline styles, use just Antd and Antd context configuration
 - wrap antd components

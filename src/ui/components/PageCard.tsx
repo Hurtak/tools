@@ -1,5 +1,5 @@
 import { Card } from "antd";
-import { CSSProperties, ReactNode } from "react";
+import { type CSSProperties, type ReactNode } from "react";
 
 export type PageCardProps = {
   children: ReactNode;

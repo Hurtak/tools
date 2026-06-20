@@ -25,8 +25,8 @@ jobs:
       - run: deno task build
       - uses: actions/upload-artifact@v7
         with:
-          name: artifact-dist
-          path: dist
+          name: artifact-out
+          path: out
 
   deploy:
     if: github.ref_type == 'branch' && github.ref_name == 'main'
@@ -39,9 +39,9 @@ jobs:
     steps:
       - uses: actions/download-artifact@v8
         with:
-          name: artifact-dist
-          path: dist
+          name: artifact-out
+          path: out
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./out
