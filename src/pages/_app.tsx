@@ -1,15 +1,25 @@
+import { type AppProps } from "next/app";
+// @deno-types="../types/next-head.d.ts"
 import Head from "next/head";
-import type { AppProps } from "next/app";
+import { App as AntdApp, ConfigProvider, theme } from "antd";
 
-const ToolsApp = ({ Component, pageProps }: AppProps) => (
+const App = ({ Component, pageProps }: AppProps) => (
   <>
     <Head>
-      <meta charSet="UTF-8" />
+      <title>Tools</title>
       <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-      <title>Hurtak&apos;s Tools</title>
     </Head>
-    <Component {...pageProps} />
+
+    <ConfigProvider
+      theme={{
+        algorithm: theme.defaultAlgorithm,
+      }}
+    >
+      <AntdApp>
+        <Component {...pageProps} />
+      </AntdApp>
+    </ConfigProvider>
   </>
 );
 
-export default ToolsApp;
+export default App;

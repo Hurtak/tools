@@ -2,7 +2,10 @@ import { Head, Html, Main, NextScript } from "next/document";
 
 const Document = () => (
   <Html lang="en">
-    <Head />
+    <Head>
+      <meta charSet="UTF-8" />
+    </Head>
+
     <body>
       <Main />
       <NextScript />

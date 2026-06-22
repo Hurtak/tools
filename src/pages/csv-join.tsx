@@ -1,3 +1,1 @@
-import { App as CsvJoinApp } from "../apps/csv-join/App.tsx";
-
-export default CsvJoinApp;
+export { App as default } from "../apps/csv-join/index.tsx";

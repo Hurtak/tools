@@ -20,6 +20,7 @@ import {
 } from "../../ui/index.ts";
 import { useMemo, useState } from "react";
 import { createFileId, formatBytes, joinCsvTexts } from "./domain.ts";
+import { AppMetadata } from "../types.ts";
 
 const { Dragger } = Upload;
 const { Text, Title } = Typography;
@@ -39,6 +40,11 @@ type CsvFile = {
 type JoinResult = {
   content: string;
   fileCount: number;
+};
+
+export const metadata: AppMetadata = {
+  name: "CSV Join",
+  description: "Join CSV files in order while keeping the first header row.",
 };
 
 export const App = () => {
@@ -111,10 +117,10 @@ export const App = () => {
       subtitle="Drop several CSV files, keep the first header, and append every later file without its header row."
       title="CSV Join"
     >
-      <Space direction="vertical" size={16} style={{ width: "100%" }}>
+      <Space orientation="vertical" size={16} style={{ width: "100%" }}>
         <PageCard>
           <Dragger {...uploadProps}>
-            <Space align="center" direction="vertical" size={12} style={{ width: "100%" }}>
+            <Space align="center" orientation="vertical" size={12} style={{ width: "100%" }}>
               <InboxOutlined style={{ color: "#2563eb", fontSize: 42 }} />
               <Title level={4} style={{ letterSpacing: 0, margin: 0 }}>
                 Drop CSV files here
@@ -137,7 +143,7 @@ export const App = () => {
           {csvFiles.length === 0
             ? <Empty description="No CSV files added yet" image={Empty.PRESENTED_IMAGE_SIMPLE} />
             : (
-              <Space direction="vertical" size={16} style={{ width: "100%" }}>
+              <Space orientation="vertical" size={16} style={{ width: "100%" }}>
                 <Flex align="center" gap={12} justify="space-between" wrap>
                   <Space size={16} wrap>
                     <Statistic title="Files" value={csvFiles.length} />
@@ -190,7 +196,7 @@ export const App = () => {
               }
               title="Joined CSV"
             >
-              <Space direction="vertical" size={12} style={{ width: "100%" }}>
+              <Space orientation="vertical" size={12} style={{ width: "100%" }}>
                 <Alert
                   message={`Joined ${joinResult.fileCount} CSV file${joinResult.fileCount === 1 ? "" : "s"}.`}
                   showIcon

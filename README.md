@@ -6,11 +6,6 @@
 - `deno task build` - build the static GitHub Pages export into `out`.
 - `deno task verify` - run type-checking, tests, linting, formatting checks, and a production build.
 
-## Apps
-
-- `/tools/csv-join` - drag in CSV files, join them in order, keep the first header row, and download the merged CSV.
-- `/tools/app1` - placeholder app.
-
 ## TODOs
 
 - layout overflows and there is scrollbar

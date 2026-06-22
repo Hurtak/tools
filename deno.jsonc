@@ -1,24 +1,24 @@
 {
   // project settings
   "tasks": {
-    "dev": "deno run -A npm:next dev",
-    "build": "deno run -A npm:next build",
+    "dev": "deno run -A next dev",
+    "build": "deno run -A next build",
     "preview": "deno run --allow-net --allow-read=out jsr:@std/http/file-server out",
-    "test": "deno test src/apps/csv-join/domain.test.ts",
-    "type-check": "deno check src/apps/csv-join/domain.test.ts",
+    "test": "deno test",
+    "type-check": "deno check",
     "fix": "deno fmt && deno lint --fix",
     "verify": "deno task type-check && deno task test && deno lint && deno fmt --check && deno task build"
   },
   "imports": {
-    "@ant-design/icons": "npm:@ant-design/icons",
-    "@types/node": "npm:@types/node",
-    "@types/react": "npm:@types/react",
-    "@types/react-dom": "npm:@types/react-dom",
-    "antd": "npm:antd",
-    "next": "npm:next",
-    "react": "npm:react",
-    "react-dom": "npm:react-dom",
-    "typescript": "npm:typescript"
+    "@ant-design/icons": "npm:@ant-design/icons@6.2.5",
+    "@types/node": "npm:@types/node@25.9.3",
+    "@types/react": "npm:@types/react@19.2.17",
+    "@types/react-dom": "npm:@types/react-dom@19.2.3",
+    "antd": "npm:antd@6.4.4",
+    "next": "npm:next@16.2.9",
+    "react": "npm:react@19.2.7",
+    "react-dom": "npm:react-dom@19.2.7",
+    "typescript": "npm:typescript@6.0.3"
   },
 
   // deno configuration
@@ -31,12 +31,11 @@
   },
 
   // checks configuration
+  "exclude": ["vendor", "node_modules", ".next", "out"],
   "fmt": {
-    "exclude": ["vendor", "node_modules", ".next", "out"],
     "lineWidth": 120
   },
   "lint": {
-    "exclude": ["vendor", "node_modules", ".next", "out"],
     "rules": {
       "tags": ["recommended", "react", "jsx"]
     }

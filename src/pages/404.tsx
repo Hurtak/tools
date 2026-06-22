@@ -3,18 +3,20 @@ import { Button, HomeOutlined, Layout, PageCard, Space, Typography } from "../ui
 const { Paragraph, Text, Title } = Typography;
 
 const PageNotFound = () => (
-  <Layout subtitle="The page you requested does not exist." title="Page not found">
+  <Layout title="Page not found" subtitle="The page you requested does not exist.">
     <PageCard
-      bodyStyle={{
-        alignItems: "center",
-        display: "flex",
-        flexDirection: "column",
-        gap: 16,
-        minHeight: 280,
-        textAlign: "center",
+      styles={{
+        body: {
+          alignItems: "center",
+          display: "flex",
+          flexDirection: "column",
+          gap: 16,
+          minHeight: 280,
+          textAlign: "center",
+        },
       }}
     >
-      <Space direction="vertical" size={4}>
+      <Space orientation="vertical" size={4}>
         <Text strong style={{ color: "#2563eb", fontSize: 18 }}>
           404
         </Text>

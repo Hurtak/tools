@@ -1,15 +1,15 @@
 {
   "version": "5",
   "specifiers": {
-    "npm:@ant-design/icons@*": "6.2.5_react@19.2.7_react-dom@19.2.7__react@19.2.7",
-    "npm:@types/node@*": "25.9.3",
-    "npm:@types/react-dom@*": "19.2.3_@types+react@19.2.17",
-    "npm:@types/react@*": "19.2.17",
-    "npm:antd@*": "6.4.4_react@19.2.7_react-dom@19.2.7__react@19.2.7",
-    "npm:next@*": "16.2.9_react@19.2.7_react-dom@19.2.7__react@19.2.7",
-    "npm:react-dom@*": "19.2.7_react@19.2.7",
-    "npm:react@*": "19.2.7",
-    "npm:typescript@*": "6.0.3"
+    "npm:@ant-design/icons@6.2.5": "6.2.5_react@19.2.7_react-dom@19.2.7__react@19.2.7",
+    "npm:@types/node@25.9.3": "25.9.3",
+    "npm:@types/react-dom@19.2.3": "19.2.3_@types+react@19.2.17",
+    "npm:@types/react@19.2.17": "19.2.17",
+    "npm:antd@6.4.4": "6.4.4_react@19.2.7_react-dom@19.2.7__react@19.2.7",
+    "npm:next@16.2.9": "16.2.9_react@19.2.7_react-dom@19.2.7__react@19.2.7",
+    "npm:react-dom@19.2.7": "19.2.7_react@19.2.7",
+    "npm:react@19.2.7": "19.2.7",
+    "npm:typescript@6.0.3": "6.0.3"
   },
   "npm": {
     "@ant-design/colors@8.0.1": {
@@ -370,8 +370,8 @@
         "react-dom"
       ]
     },
-    "@rc-component/form@1.8.3_react@19.2.7_react-dom@19.2.7__react@19.2.7": {
-      "integrity": "sha512-jNkat3uxZ246ELudKwnjQhnDI8+rSxgLxjztvQU3Mrb0G+LwDyOrPu9RNfekOjqU5GQ5QJepi225x+9LhCizJw==",
+    "@rc-component/form@1.8.4_react@19.2.7_react-dom@19.2.7__react@19.2.7": {
+      "integrity": "sha512-I2FHNMWoiGQNjC+hQFhAj/rQeScAIBc+AkZqvu4Zyaxe4I3WOVpQte2E5lyZhruswyT8aULYHu1clPaPwE9L2A==",
       "dependencies": [
         "@rc-component/async-validator",
         "@rc-component/util",
@@ -951,15 +951,15 @@
   },
   "workspace": {
     "dependencies": [
-      "npm:@ant-design/icons@*",
-      "npm:@types/node@*",
-      "npm:@types/react-dom@*",
-      "npm:@types/react@*",
-      "npm:antd@*",
-      "npm:next@*",
-      "npm:react-dom@*",
-      "npm:react@*",
-      "npm:typescript@*"
+      "npm:@ant-design/icons@6.2.5",
+      "npm:@types/node@25.9.3",
+      "npm:@types/react-dom@19.2.3",
+      "npm:@types/react@19.2.17",
+      "npm:antd@6.4.4",
+      "npm:next@16.2.9",
+      "npm:react-dom@19.2.7",
+      "npm:react@19.2.7",
+      "npm:typescript@6.0.3"
     ]
   }
 }

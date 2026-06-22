@@ -11,23 +11,8 @@ import {
 
 const { Text } = Typography;
 
-const tools = [
-  {
-    description: "Join CSV files in order while keeping the first header row.",
-    href: "csv-join/",
-    icon: <FileTextOutlined style={{ color: "#2563eb", fontSize: 22 }} />,
-    title: "CSV Join",
-  },
-  {
-    description: "Small placeholder app for the next tool.",
-    href: "app1/",
-    icon: <ToolOutlined style={{ color: "#2563eb", fontSize: 22 }} />,
-    title: "app1",
-  },
-];
-
 const PageHome = () => (
-  <Layout subtitle="A small collection of browser tools." title="Tools">
+  <Layout title="Tools" subtitle="A small collection of tools running in your browser.">
     <div
       style={{
         display: "grid",
@@ -35,25 +20,39 @@ const PageHome = () => (
         gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 280px), 1fr))",
       }}
     >
-      {tools.map((tool) => (
-        <PageCard
-          bodyStyle={{ display: "flex", flexDirection: "column", minHeight: 156 }}
-          key={tool.href}
-          title={
-            <Space size={10}>
-              {tool.icon}
-              <span>{tool.title}</span>
-            </Space>
-          }
-        >
-          <Text type="secondary">{tool.description}</Text>
-          <div style={{ marginTop: "auto", paddingTop: 24 }}>
-            <Button href={tool.href} icon={<ArrowRightOutlined />} type="primary">
-              Open
-            </Button>
-          </div>
-        </PageCard>
-      ))}
+      <PageCard
+        styles={{ body: { display: "flex", flexDirection: "column", minHeight: 156 } }}
+        title={
+          <Space size={10}>
+            <FileTextOutlined style={{ color: "#2563eb", fontSize: 22 }} />
+            <span>CSV Join</span>
+          </Space>
+        }
+      >
+        <Text type="secondary">Join CSV files in order while keeping the first header row.</Text>
+        <div style={{ marginTop: "auto", paddingTop: 24 }}>
+          <Button href="csv-join/" icon={<ArrowRightOutlined />} type="primary">
+            Open
+          </Button>
+        </div>
+      </PageCard>
+
+      <PageCard
+        styles={{ body: { display: "flex", flexDirection: "column", minHeight: 156 } }}
+        title={
+          <Space size={10}>
+            <ToolOutlined style={{ color: "#2563eb", fontSize: 22 }} />
+            <span>example</span>
+          </Space>
+        }
+      >
+        <Text type="secondary">Placeholder app.</Text>
+        <div style={{ marginTop: "auto", paddingTop: 24 }}>
+          <Button href="example/" icon={<ArrowRightOutlined />} type="primary">
+            Open
+          </Button>
+        </div>
+      </PageCard>
     </div>
   </Layout>
 );
