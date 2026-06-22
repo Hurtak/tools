@@ -7,7 +7,7 @@
     "test": "deno test",
     "type-check": "deno check",
     "fix": "deno fmt && deno lint --fix",
-    "verify": "deno task type-check && deno task test && deno lint && deno fmt --check && deno task build"
+    "verify": "deno run -A next typegen && deno task type-check && deno task test && deno lint && deno fmt --check && deno task build"
   },
   "imports": {
     "@ant-design/icons": "npm:@ant-design/icons@6.2.5",
