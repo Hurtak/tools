@@ -2,6 +2,7 @@ import { type AppProps } from "next/app";
 // @deno-types="../types/next-head.d.ts"
 import Head from "next/head";
 import { App as AntdApp, ConfigProvider, theme } from "antd";
+import "../styles.css";
 
 const App = ({ Component, pageProps }: AppProps) => (
   <>

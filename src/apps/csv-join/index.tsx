@@ -1,5 +1,6 @@
 import {
   Alert,
+  Avatar,
   Button,
   DeleteOutlined,
   DownloadOutlined,
@@ -25,12 +26,6 @@ import { AppMetadata } from "../types.ts";
 const { Dragger } = Upload;
 const { Text, Title } = Typography;
 const { TextArea } = Input;
-
-const csvPreviewStyle = {
-  fontFamily: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace',
-  fontSize: 12,
-  lineHeight: 1.5,
-};
 
 type CsvFile = {
   id: string;
@@ -117,16 +112,14 @@ export const App = () => {
       subtitle="Drop several CSV files, keep the first header, and append every later file without its header row."
       title="CSV Join"
     >
-      <Space orientation="vertical" size={16} style={{ width: "100%" }}>
+      <Flex gap={16} vertical>
         <PageCard>
           <Dragger {...uploadProps}>
-            <Space align="center" orientation="vertical" size={12} style={{ width: "100%" }}>
-              <InboxOutlined style={{ color: "#2563eb", fontSize: 42 }} />
-              <Title level={4} style={{ letterSpacing: 0, margin: 0 }}>
-                Drop CSV files here
-              </Title>
+            <Flex align="center" gap={12} vertical>
+              <InboxOutlined />
+              <Title level={4}>Drop CSV files here</Title>
               <Text type="secondary">Multiple files are supported. Files are joined in the order they are added.</Text>
-            </Space>
+            </Flex>
           </Dragger>
         </PageCard>
 
@@ -143,7 +136,7 @@ export const App = () => {
           {csvFiles.length === 0
             ? <Empty description="No CSV files added yet" image={Empty.PRESENTED_IMAGE_SIMPLE} />
             : (
-              <Space orientation="vertical" size={16} style={{ width: "100%" }}>
+              <Flex gap={16} vertical>
                 <Flex align="center" gap={12} justify="space-between" wrap>
                   <Space size={16} wrap>
                     <Statistic title="Files" value={csvFiles.length} />
@@ -168,7 +161,7 @@ export const App = () => {
                       ]}
                     >
                       <List.Item.Meta
-                        avatar={<FileTextOutlined style={{ color: "#2563eb", fontSize: 20 }} />}
+                        avatar={<Avatar icon={<FileTextOutlined />} shape="square" size="small" />}
                         description={formatBytes(file.size)}
                         title={
                           <Space size={8} wrap>
@@ -180,7 +173,7 @@ export const App = () => {
                     </List.Item>
                   )}
                 />
-              </Space>
+              </Flex>
             )}
         </PageCard>
 
@@ -196,18 +189,18 @@ export const App = () => {
               }
               title="Joined CSV"
             >
-              <Space orientation="vertical" size={12} style={{ width: "100%" }}>
+              <Flex gap={12} vertical>
                 <Alert
                   message={`Joined ${joinResult.fileCount} CSV file${joinResult.fileCount === 1 ? "" : "s"}.`}
                   showIcon
                   type="success"
                 />
-                <TextArea readOnly rows={14} style={csvPreviewStyle} value={joinResult.content} />
-              </Space>
+                <TextArea readOnly rows={14} value={joinResult.content} variant="filled" />
+              </Flex>
             </PageCard>
           )
           : null}
-      </Space>
+      </Flex>
     </Layout>
   );
 };

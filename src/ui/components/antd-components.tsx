@@ -1,1 +1,17 @@
-export { Alert, Button, Empty, Flex, Input, List, Space, Statistic, Tag, Typography, Upload } from "antd";
+export {
+  Alert,
+  Avatar,
+  Button,
+  Col,
+  Empty,
+  Flex,
+  Input,
+  List,
+  Result,
+  Row,
+  Space,
+  Statistic,
+  Tag,
+  Typography,
+  Upload,
+} from "antd";
