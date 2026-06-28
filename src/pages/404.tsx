@@ -1,4 +1,4 @@
-import Link from "next/link";
+import NextLink from "next/link";
 import { Button, HomeOutlined, Layout, PageCard, Result } from "../ui/index.ts";
 
 const PageNotFound = () => (
@@ -6,11 +6,11 @@ const PageNotFound = () => (
     <PageCard>
       <Result
         extra={
-          <Link passHref href="/">
+          <NextLink passHref href="/">
             <Button icon={<HomeOutlined />} type="primary">
               Back to tools
             </Button>
-          </Link>
+          </NextLink>
         }
         status="404"
         subTitle="This tool is out of reach. Check the address, or return to the tools list to choose an available app."

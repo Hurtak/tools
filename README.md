@@ -8,7 +8,7 @@
 
 ## TODOs
 
+- header cleanup - the header mixes what should be page responsibility, like the title etc, it should not jump when
+  changing sizes etc
 - layout overflows and there is scrollbar
-- remove inline styles, use just Antd and Antd context configuration
-- wrap antd components
 - cleanup csv-join

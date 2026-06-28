@@ -27,7 +27,10 @@
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "deno.ns"],
     "jsx": "react-jsx",
-    "jsxImportSource": "react"
+    "jsxImportSource": "react",
+
+    "module": "esnext", // needed for next.js types to work, see https://github.com/denoland/deno/issues/25359
+    "moduleResolution": "bundler" // needed for next.js types to work, see https://github.com/denoland/deno/issues/25359
   },
 
   // checks configuration
