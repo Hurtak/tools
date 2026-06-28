@@ -1,11 +1,7 @@
-import { Layout as AntLayout } from "antd";
-import { Col, Flex, Row, Space, Typography } from "./antd-components.tsx";
+import { Box, Container, Flex, Heading, Separator, Text } from "./radix-components.tsx";
 // @deno-types="../../types/next-head.d.ts"
 import NextHead from "next/head";
 import { type ReactNode } from "react";
-
-const { Content, Header } = AntLayout;
-const { Text, Title } = Typography;
 
 export type LayoutProps = {
   children: ReactNode;
@@ -20,42 +16,40 @@ export const Layout = ({
   subtitle,
   title,
 }: LayoutProps) => (
-  <AntLayout style={{ minHeight: "100vh" }}>
+  <Box>
     <NextHead>
-      <title>{`${title} - Tools`}</title>
+      <title>{title ? `${title} - Tools` : "Tools"}</title>
     </NextHead>
 
-    <Header
-      style={{
-        background: "#fff",
-        borderBottom: "1px solid #e6e8eb",
-        height: "auto",
-        lineHeight: 1,
-        padding: "14px 0",
-      }}
-    >
-      <Row align="middle" justify="center">
-        <Col lg={22} md={21} xl={20} xs={22} xxl={16}>
-          <Flex align="center" gap={16} justify="space-between" wrap>
-            <Space orientation="vertical" size={4}>
-              <Text strong style={{ color: "#2563eb" }}>
-                Hurtak's Tools
-              </Text>
-              {title ? <Title level={2} style={{ margin: 0 }}>{title}</Title> : null}
-              {subtitle ? <Text type="secondary">{subtitle}</Text> : null}
-            </Space>
-            {actions ? <Space wrap>{actions}</Space> : null}
+    <Box asChild py="5">
+      <header>
+        <Container size="3">
+          <Flex direction="column" gap="3">
+            <Text color="gray" weight="bold">
+              Hurtak's Tools
+            </Text>
+            {title ? <Heading as="h1" size="7">{title}</Heading> : null}
+            {subtitle
+              ? (
+                <Text as="p" color="gray">
+                  {subtitle}
+                </Text>
+              )
+              : null}
+            {actions ? <Flex gap="2" wrap="wrap">{actions}</Flex> : null}
           </Flex>
-        </Col>
-      </Row>
-    </Header>
+        </Container>
+      </header>
+    </Box>
 
-    <Content style={{ marginTop: "1rem" }}>
-      <Row justify="center">
-        <Col lg={22} md={21} xl={20} xs={22} xxl={16}>
+    <Separator size="4" />
+
+    <Box asChild py="5">
+      <main>
+        <Container size="3">
           {children}
-        </Col>
-      </Row>
-    </Content>
-  </AntLayout>
+        </Container>
+      </main>
+    </Box>
+  </Box>
 );

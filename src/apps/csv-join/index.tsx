@@ -1,31 +1,20 @@
 import {
-  Alert,
-  Avatar,
+  Badge,
+  Box,
   Button,
-  DeleteOutlined,
-  DownloadOutlined,
-  Empty,
-  FileTextOutlined,
+  Callout,
+  Card,
+  DataList,
   Flex,
-  InboxOutlined,
-  Input,
+  Heading,
   Layout,
-  List,
-  PageCard,
-  PlusOutlined,
-  Space,
-  Statistic,
-  Tag,
-  Typography,
-  Upload,
+  Separator,
+  Text,
+  TextArea,
 } from "../../ui/index.ts";
-import { useMemo, useState } from "react";
+import { type ChangeEvent, useMemo, useState } from "react";
 import { createFileId, formatBytes, joinCsvTexts } from "./domain.ts";
-import { AppMetadata } from "../types.ts";
-
-const { Dragger } = Upload;
-const { Text, Title } = Typography;
-const { TextArea } = Input;
+import { type AppMetadata } from "../types.ts";
 
 type CsvFile = {
   id: string;
@@ -51,16 +40,23 @@ export const App = () => {
     [csvFiles],
   );
 
-  const uploadProps = {
-    accept: ".csv,text/csv",
-    beforeUpload: (file: File) => {
-      setCsvFiles((currentFiles) => [...currentFiles, { file, id: createFileId(file) }]);
-      setJoinResult(null);
-      setErrorMessage(null);
-      return Upload.LIST_IGNORE;
-    },
-    multiple: true,
-    showUploadList: false,
+  const addFiles = (files: FileList | null) => {
+    const selectedFiles = Array.from(files ?? []);
+    if (selectedFiles.length === 0) {
+      return;
+    }
+
+    setCsvFiles((currentFiles) => [
+      ...currentFiles,
+      ...selectedFiles.map((file) => ({ file, id: createFileId(file) })),
+    ]);
+    setJoinResult(null);
+    setErrorMessage(null);
+  };
+
+  const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+    addFiles(event.currentTarget.files);
+    event.currentTarget.value = "";
   };
 
   const removeFile = (id: string) => {
@@ -112,92 +108,115 @@ export const App = () => {
       subtitle="Drop several CSV files, keep the first header, and append every later file without its header row."
       title="CSV Join"
     >
-      <Flex gap={16} vertical>
-        <PageCard>
-          <Dragger {...uploadProps}>
-            <Flex align="center" gap={12} vertical>
-              <InboxOutlined />
-              <Title level={4}>Drop CSV files here</Title>
-              <Text type="secondary">Multiple files are supported. Files are joined in the order they are added.</Text>
-            </Flex>
-          </Dragger>
-        </PageCard>
+      <Flex direction="column" gap="4">
+        <Card size="3">
+          <Flex direction="column" gap="3">
+            <Heading as="h2" size="4">
+              Add CSV files
+            </Heading>
+            <Text as="p" color="gray">
+              Multiple files are supported. Files are joined in the order they are added.
+            </Text>
+            <input accept=".csv,text/csv" multiple onChange={handleFileChange} type="file" />
+          </Flex>
+        </Card>
 
-        <PageCard
-          extra={csvFiles.length > 0
-            ? (
-              <Button icon={<DeleteOutlined />} onClick={clearFiles}>
-                Clear
-              </Button>
-            )
-            : null}
-          title="Added CSVs"
-        >
-          {csvFiles.length === 0
-            ? <Empty description="No CSV files added yet" image={Empty.PRESENTED_IMAGE_SIMPLE} />
-            : (
-              <Flex gap={16} vertical>
-                <Flex align="center" gap={12} justify="space-between" wrap>
-                  <Space size={16} wrap>
-                    <Statistic title="Files" value={csvFiles.length} />
-                    <Statistic title="Total size" value={formatBytes(totalSize)} />
-                  </Space>
-                  <Button icon={<PlusOutlined />} onClick={joinCsvs} type="primary">
-                    Join CSV
+        <Card size="3">
+          <Flex direction="column" gap="4">
+            <Flex align="start" direction={{ initial: "column", sm: "row" }} gap="3" justify="between">
+              <Box>
+                <Heading as="h2" size="4">
+                  Added CSVs
+                </Heading>
+                <Text as="p" color="gray">
+                  Files are joined in this order.
+                </Text>
+              </Box>
+              {csvFiles.length > 0
+                ? (
+                  <Button color="red" onClick={clearFiles} variant="soft">
+                    Clear
                   </Button>
-                </Flex>
-                <List
-                  dataSource={csvFiles}
-                  renderItem={({ file, id }, index) => (
-                    <List.Item
-                      actions={[
-                        <Button
-                          aria-label={`Remove ${file.name}`}
-                          icon={<DeleteOutlined />}
-                          key="remove"
-                          onClick={() => removeFile(id)}
-                          type="text"
-                        />,
-                      ]}
-                    >
-                      <List.Item.Meta
-                        avatar={<Avatar icon={<FileTextOutlined />} shape="square" size="small" />}
-                        description={formatBytes(file.size)}
-                        title={
-                          <Space size={8} wrap>
-                            <Text>{file.name}</Text>
-                            {index === 0 ? <Tag color="blue">Header source</Tag> : <Tag>Header removed</Tag>}
-                          </Space>
-                        }
-                      />
-                    </List.Item>
-                  )}
-                />
-              </Flex>
-            )}
-        </PageCard>
+                )
+                : null}
+            </Flex>
 
-        {errorMessage ? <Alert message={errorMessage} showIcon type="error" /> : null}
+            {csvFiles.length === 0
+              ? <Text color="gray">No CSV files added yet.</Text>
+              : (
+                <Flex direction="column" gap="4">
+                  <DataList.Root>
+                    <DataList.Item>
+                      <DataList.Label>Files</DataList.Label>
+                      <DataList.Value>{csvFiles.length}</DataList.Value>
+                    </DataList.Item>
+                    <DataList.Item>
+                      <DataList.Label>Total size</DataList.Label>
+                      <DataList.Value>{formatBytes(totalSize)}</DataList.Value>
+                    </DataList.Item>
+                  </DataList.Root>
+
+                  <Button onClick={joinCsvs}>Join CSV</Button>
+
+                  <Flex direction="column" gap="3">
+                    {csvFiles.map(({ file, id }, index) => (
+                      <Flex direction="column" gap="3" key={id}>
+                        <Flex align="start" direction={{ initial: "column", sm: "row" }} gap="3" justify="between">
+                          <Flex direction="column" gap="1">
+                            <Flex align="center" gap="2" wrap="wrap">
+                              <Text weight="medium">{file.name}</Text>
+                              <Badge color={index === 0 ? "blue" : "gray"}>
+                                {index === 0 ? "Header source" : "Header removed"}
+                              </Badge>
+                            </Flex>
+                            <Text color="gray" size="2">
+                              {formatBytes(file.size)}
+                            </Text>
+                          </Flex>
+                          <Button
+                            aria-label={`Remove ${file.name}`}
+                            color="red"
+                            onClick={() => removeFile(id)}
+                            variant="ghost"
+                          >
+                            Remove
+                          </Button>
+                        </Flex>
+                        {index < csvFiles.length - 1 ? <Separator /> : null}
+                      </Flex>
+                    ))}
+                  </Flex>
+                </Flex>
+              )}
+          </Flex>
+        </Card>
+
+        {errorMessage
+          ? (
+            <Callout.Root color="red">
+              <Callout.Text>{errorMessage}</Callout.Text>
+            </Callout.Root>
+          )
+          : null}
 
         {joinResult
           ? (
-            <PageCard
-              extra={
-                <Button icon={<DownloadOutlined />} onClick={downloadJoinedCsv} type="primary">
-                  Download
-                </Button>
-              }
-              title="Joined CSV"
-            >
-              <Flex gap={12} vertical>
-                <Alert
-                  message={`Joined ${joinResult.fileCount} CSV file${joinResult.fileCount === 1 ? "" : "s"}.`}
-                  showIcon
-                  type="success"
-                />
-                <TextArea readOnly rows={14} value={joinResult.content} variant="filled" />
+            <Card size="3">
+              <Flex direction="column" gap="3">
+                <Flex align="start" direction={{ initial: "column", sm: "row" }} gap="3" justify="between">
+                  <Heading as="h2" size="4">
+                    Joined CSV
+                  </Heading>
+                  <Button onClick={downloadJoinedCsv}>Download</Button>
+                </Flex>
+                <Callout.Root color="green">
+                  <Callout.Text>
+                    Joined {joinResult.fileCount} CSV file{joinResult.fileCount === 1 ? "" : "s"}.
+                  </Callout.Text>
+                </Callout.Root>
+                <TextArea readOnly resize="vertical" rows={14} value={joinResult.content} />
               </Flex>
-            </PageCard>
+            </Card>
           )
           : null}
       </Flex>

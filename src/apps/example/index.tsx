@@ -1,7 +1,5 @@
-import { Layout, PageCard, Typography } from "../../ui/index.ts";
+import { Card, Layout, Text } from "../../ui/index.ts";
 import { type AppMetadata } from "../types.ts";
-
-const { Paragraph } = Typography;
 
 export const metadata: AppMetadata = {
   name: "Example",
@@ -10,8 +8,8 @@ export const metadata: AppMetadata = {
 
 export const App = () => (
   <Layout title="Example">
-    <PageCard>
-      <Paragraph>Example App</Paragraph>
-    </PageCard>
+    <Card size="3">
+      <Text as="p">Example App</Text>
+    </Card>
   </Layout>
 );

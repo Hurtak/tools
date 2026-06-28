@@ -1,58 +1,41 @@
-import {
-  ArrowRightOutlined,
-  Button,
-  Col,
-  FileTextOutlined,
-  Flex,
-  Layout,
-  PageCard,
-  Row,
-  Space,
-  ToolOutlined,
-  Typography,
-} from "../ui/index.ts";
-
-const { Text } = Typography;
+import { Button, Card, Flex, Grid, Heading, Layout, Text } from "../ui/index.ts";
+import NextLink from "next/link";
 
 const PageHome = () => (
   <Layout title="Tools" subtitle="A small collection of tools running in your browser.">
-    <Row gutter={[16, 16]}>
-      <Col md={12} xs={24}>
-        <PageCard
-          title={
-            <Space size={10}>
-              <FileTextOutlined />
-              <span>CSV Join</span>
-            </Space>
-          }
-        >
-          <Flex gap={24} vertical>
-            <Text type="secondary">Join CSV files in order while keeping the first header row.</Text>
-            <Button href="csv-join/" icon={<ArrowRightOutlined />} type="primary">
+    <Grid columns={{ initial: "1", sm: "2" }} gap="4">
+      <Card size="3">
+        <Flex direction="column" gap="3">
+          <Heading as="h2" size="5">
+            CSV Join
+          </Heading>
+          <Text as="p" color="gray">
+            Join CSV files in order while keeping the first header row.
+          </Text>
+          <Button asChild>
+            <NextLink href="/csv-join/">
               Open
-            </Button>
-          </Flex>
-        </PageCard>
-      </Col>
+            </NextLink>
+          </Button>
+        </Flex>
+      </Card>
 
-      <Col md={12} xs={24}>
-        <PageCard
-          title={
-            <Space size={10}>
-              <ToolOutlined />
-              <span>example</span>
-            </Space>
-          }
-        >
-          <Flex gap={24} vertical>
-            <Text type="secondary">Placeholder app.</Text>
-            <Button href="example/" icon={<ArrowRightOutlined />} type="primary">
+      <Card size="3">
+        <Flex direction="column" gap="3">
+          <Heading as="h2" size="5">
+            Example
+          </Heading>
+          <Text as="p" color="gray">
+            Placeholder app.
+          </Text>
+          <Button asChild>
+            <NextLink href="/example/">
               Open
-            </Button>
-          </Flex>
-        </PageCard>
-      </Col>
-    </Row>
+            </NextLink>
+          </Button>
+        </Flex>
+      </Card>
+    </Grid>
   </Layout>
 );
 
